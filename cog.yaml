@@ -1,0 +1,18 @@
+build:
+  cuda: "10.1"
+  gpu: true
+
+  system_packages:
+    - "libgl1-mesa-glx"
+    - "libglib2.0-0"
+
+  python_version: "3.8"
+
+  python_packages:
+    - "torch==1.8.1"
+    - "torchvision==0.9.1"
+    - "numpy==1.22.0"
+    - "ipython==7.30.1"
+    - "Pillow==9.1.1"
+
+predict: "predict.py:Predictor"
