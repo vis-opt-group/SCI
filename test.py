@@ -12,10 +12,10 @@ from model import Finetunemodel
 from multi_read_data import MemoryFriendlyLoader
 
 parser = argparse.ArgumentParser("SCI")
-parser.add_argument('--data_path', type=str, default='./data/medium',
+parser.add_argument('--data_path', type=str, default='./data',
                     help='location of the data corpus')
-parser.add_argument('--save_path', type=str, default='./results/medium', help='location of the data corpus')
-parser.add_argument('--model', type=str, default='./weights/medium.pt', help='location of the data corpus')
+parser.add_argument('--save_path', type=str, default='./results', help='location of the data corpus')
+parser.add_argument('--model', type=str, default='./weights/weights_1_3500.pt', help='location of the data corpus')
 parser.add_argument('--gpu', type=int, default=0, help='gpu device id')
 parser.add_argument('--seed', type=int, default=2, help='random seed')
 
@@ -49,7 +49,7 @@ def main():
     with torch.no_grad():
         for _, (input, image_name) in enumerate(test_queue):
             input = Variable(input, volatile=True).cuda()
-            image_name = image_name[0].split('\\')[-1].split('.')[0]
+            image_name = image_name[0].split('/')[-1].split('.')[0]
             i, r = model(input)
             u_name = '%s.png' % (image_name)
             print('processing {}'.format(u_name))
